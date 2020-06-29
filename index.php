@@ -1,8 +1,10 @@
 <?php 
 
-include 'layout/layout.php' 
+include 'layout/layout.php' ;
+
 
 session_start();
+
 $_SESSION['students'] = isset($_SESSION['students']) ? $_SESSION['students'] : array();
 
 ?>

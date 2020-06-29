@@ -1,4 +1,5 @@
 <?php 
+
 include '../layout/layout.php'; 
 include '../helpers/utilities.php'; 
 
@@ -14,9 +15,11 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['c
     $students =  $_SESSION['students'];
 
 
-    $studentId= 1;
+    $studentId = 1;
 
     array_push($students, ['id' => $studentId,'first_name' => $_POST['first_name'],'last_name' => $_POST['last_name'],'carreer' => $_POST['carreer'], 'student_state' => $_POST['student_state']  ]);
+
+    $_SESSION['students'] = $students;
 
     var_dump($students);
 
