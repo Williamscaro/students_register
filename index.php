@@ -1,4 +1,13 @@
-<?php include 'layout/layout.php' ?>
+<?php 
+
+include 'layout/layout.php' 
+
+session_start();
+$_SESSION['students'] = isset($_SESSION['students']) ? $_SESSION['students'] : array();
+
+?>
+
+
 <?php printHeader(); ?>
 
 <main role="main">

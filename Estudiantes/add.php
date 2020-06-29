@@ -2,10 +2,20 @@
 include '../layout/layout.php'; 
 include '../helpers/utilities.php'; 
 
+
+ session_start();
+
+
 if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['carreer']) && isset($_POST['student_state'])) {
  
+
+    $_SESSION['students'] = isset($_SESSION['students']) ? $_SESSION['students'] : array();
+
+    $students =  $_SESSION['students'];
+
+
     $studentId= 1;
-    $students = [];
+
     array_push($students, ['id' => $studentId,'first_name' => $_POST['first_name'],'last_name' => $_POST['last_name'],'carreer' => $_POST['carreer'], 'student_state' => $_POST['student_state']  ]);
 
     var_dump($students);
