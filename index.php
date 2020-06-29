@@ -1,11 +1,14 @@
 <?php 
 
 include 'layout/layout.php' ;
+include 'helpers/utilities.php' ;
 
 
 session_start();
 
 $_SESSION['students'] = isset($_SESSION['students']) ? $_SESSION['students'] : array();
+
+$listadoEstudiantes = $_SESSION['students'];
 
 ?>
 
@@ -29,24 +32,44 @@ $_SESSION['students'] = isset($_SESSION['students']) ? $_SESSION['students'] : a
     <div class="container">
 
       <div class="row">
+
+      <?php if (empty($listadoEstudiantes)): ?>
+
+        <h2>No hay Estudiantes Registrados, registralo aqui: <a class="btn btn-primary" href="Estudiantes/add.php"></a> Registrar Ahora</h2>
+
+      <?php else : ?>
+
+
+        <?php foreach($listadoEstudiantes as $student): ?>
+            
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-          
-        
-      </div>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Estudiantes Registrados
+    </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><?php echo $student['first_name']; ?></li>
+          <li class="list-group-item"><?php echo $student['last_name']; ?></li>
+          <li class="list-group-item"><?php echo getCarreerName($student['carreer']); ?></li>
+          <li class="list-group-item">Estudiante Activo? <?php echo $student['student_state']; ?></li>
+          <a class="card-link" href="#">Editar</a>
+          <a class="card-link" href="#">Borrar</a>
+        </ul>
+    </div>
+
+</div>
+</div>
+
+      <?php endforeach; ?>
+
+
+
+
+      <?php endif; ?>
+
+
+
     </div>
   </div>
 

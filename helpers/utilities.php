@@ -7,4 +7,22 @@ $carreer=[1 =>"Sofware",
 5 =>"Seguridad Informatica"
 ];
 
+
+function getLastElement($list){
+
+    $countList = count($list);
+    $lasElement = $list[$countList - 1];
+
+
+    return $lasElement;
+}
+
+function getCarreerName($carreerId){
+
+    return $GLOBALS['$carreer'] [$carreerId];
+}
+
+
+
+
 ?>

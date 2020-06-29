@@ -4,7 +4,7 @@ include '../layout/layout.php';
 include '../helpers/utilities.php'; 
 
 
- session_start();
+ session_start ();
 
 
 if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['carreer']) && isset($_POST['student_state'])) {
@@ -14,14 +14,20 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['c
 
     $students =  $_SESSION['students'];
 
-
     $studentId = 1;
+
+    if(!empty($students)){
+
+        $lastElement = getLastElement($students);
+        $studentId = $lastElement['id'] + 1;
+    }
 
     array_push($students, ['id' => $studentId,'first_name' => $_POST['first_name'],'last_name' => $_POST['last_name'],'carreer' => $_POST['carreer'], 'student_state' => $_POST['student_state']  ]);
 
     $_SESSION['students'] = $students;
 
-    var_dump($students);
+    header("Location: ../index.php");
+    exit();
 
 }
 
